@@ -69,6 +69,17 @@ class MainMenuActionHandler: NSResponder {
     }
   }
 
+  // currently only being used for key command
+  @objc func menuSignCurrentFile(_ sender: NSMenuItem) {
+    guard let url = player.info.currentURL else { return }
+    do {
+      let tags : [String] = ["Good"]
+      try (url as NSURL).setResourceValue(tags, forKey: .tagNamesKey)
+    } catch let error {
+      Utility.showAlert("playlist.error_deleting", arguments: [error.localizedDescription])
+    }
+  }
+
 }
 
 // MARK: - Control
