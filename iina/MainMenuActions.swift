@@ -73,7 +73,15 @@ class MainMenuActionHandler: NSResponder {
   @objc func menuSignCurrentFile(_ sender: NSMenuItem) {
     guard let url = player.info.currentURL else { return }
     do {
-      let tags : [String] = ["Good"]
+      let resourceValues = try url.resourceValues(forKeys: [.tagNamesKey])
+      var tags : [String]
+      if let tagNames = resourceValues.tagNames {
+          tags = tagNames
+      } else {
+          tags = [String]()
+      }
+      tags += ["IINA"]
+      tags = tags.unique()
       try (url as NSURL).setResourceValue(tags, forKey: .tagNamesKey)
     } catch let error {
       Utility.showAlert("playlist.error_deleting", arguments: [error.localizedDescription])
@@ -396,4 +404,11 @@ extension MainMenuActionHandler {
     default: break
     }
   }
+}
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: [Iterator.Element: Bool] = [:]
+        return self.filter { seen.updateValue(true, forKey: $0) == nil }
+    }
 }
