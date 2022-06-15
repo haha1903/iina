@@ -2624,6 +2624,8 @@ class MainWindowController: PlayerWindowController {
       menuSwitchToMiniPlayer(.dummy)
     case .deleteCurrentFileHard:
       menuActionHandler.menuDeleteCurrentFileHard(.dummy)
+    case .signCurrentFile:
+      menuActionHandler.menuSignCurrentFile(.dummy)
     case .biggerWindow:
       let item = NSMenuItem()
       item.tag = 11

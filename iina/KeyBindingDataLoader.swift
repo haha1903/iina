@@ -59,6 +59,7 @@ class KeyBindingDataLoader {
     KBI("save-playlist", type: .iinaCmd),
     KBI("delete-current-file", type: .iinaCmd),
     KBI("delete-current-file-hard", type: .iinaCmd),
+    KBI("sign-current-file", type: .iinaCmd),
     KBI.separator(),
     KBI("find-online-subs", type: .iinaCmd),
     KBI("save-downloaded-sub", type: .iinaCmd),
